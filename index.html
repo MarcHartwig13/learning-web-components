@@ -1,0 +1,47 @@
+<head>
+    <title>Testing Web Components</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <script src="//code.iconify.design/1/1.0.6/iconify.min.js"></script>
+    <script src="alertWebComponent/alertWebComponent.js" defer></script>
+</head>
+
+<body>
+    <select id="typeSelect" name="type">
+        <option value="">Select a type</option>
+        <option selected value="success">Success</option>
+        <option value="info">Info</option>
+        <option value="warning">Warning</option>
+        <option value="error">Error</option>
+    </select>
+    <input id="titleInput" type="text" name="title" value="Title">
+    <input id="textInput" type="text" name="title" value="Text"/>
+    <div id="app">
+        <h1>Web Component</h1>
+        <alert-web-component id="alertWebComponent" title="header" text="some text" type="success"></alert-web-component>
+        <div>Not in the web component</div>
+    </div>
+    <script type="text/javascript">
+        const typeSelect = document.getElementById('typeSelect');
+        const titleInput = document.getElementById('titleInput');
+        const textInput = document.getElementById('textInput');
+
+        const alertWebComponent = document.getElementById('alertWebComponent');
+        alertWebComponent.setAttribute('type', typeSelect.value);
+        alertWebComponent.setAttribute('title', titleInput.value);
+        alertWebComponent.setAttribute('text', textInput.value);
+
+        typeSelect.addEventListener('change', (event) => {
+            alertWebComponent.setAttribute('type', event.target.value);
+        });
+
+        titleInput.addEventListener('input', (event) => {
+            alertWebComponent.setAttribute('title', event.target.value);
+        })
+
+        textInput.addEventListener('input', (event) => {
+            alertWebComponent.setAttribute('text', event.target.value);
+        })
+    </script>
+</body>
